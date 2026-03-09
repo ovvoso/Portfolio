@@ -28,7 +28,7 @@
     "postcss":           "^8",
     "autoprefixer":      "^10",
     "eslint":            "^8",
-    "eslint-config-next":"14.2.0"
+    "eslint-config-next":"16.1.6"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
