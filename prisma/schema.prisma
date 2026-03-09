@@ -1,0 +1,59 @@
+// ─── SCHÉMA PRISMA ────────────────────────────────────────────────────────────
+// Ce fichier définit la structure de ta base de données PostgreSQL.
+// Après toute modification ici : npx prisma migrate dev
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id        Int     @id @default(1)
+  name      String
+  title     String
+  bio       String
+  email     String
+  phone     String
+  github    String
+  linkedin  String
+  location  String
+  available Boolean @default(true)
+}
+
+model Project {
+  id              Int      @id @default(autoincrement())
+  title           String
+  description     String
+  longDescription String
+  technologies    String[]
+  github          String   @default("")
+  demo            String   @default("")
+  image           String   @default("")
+  featured        Boolean  @default(false)
+  category        String
+  createdAt       DateTime @default(now())
+}
+
+model Skill {
+  id       Int    @id @default(autoincrement())
+  name     String
+  category String
+  level    Int
+  color    String
+}
+
+model Experience {
+  id           Int      @id @default(autoincrement())
+  title        String
+  company      String
+  period       String
+  type         String
+  description  String
+  technologies String[]
+  current      Boolean  @default(false)
+  createdAt    DateTime @default(now())
+}

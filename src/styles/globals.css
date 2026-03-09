@@ -1,0 +1,161 @@
+/* ─── DESIGN TOKENS ─────────────────────────────────────────────────────────── */
+/* Toutes les valeurs de design sont des variables CSS.
+   Pour changer le thème : modifier uniquement ces variables.
+   Compatible avec un futur passage à Tailwind ou CSS Modules. */
+
+:root {
+  /* Palette principale */
+  --color-bg-base:        #0a0f1e;
+  --color-bg-surface:     #0d1427;
+  --color-bg-elevated:    rgba(15, 23, 42, 0.9);
+  --color-bg-hover:       rgba(255, 255, 255, 0.04);
+
+  /* Accent indigo/violet */
+  --color-accent:         #6366f1;
+  --color-accent-light:   #818cf8;
+  --color-accent-muted:   rgba(99, 102, 241, 0.15);
+  --color-accent-border:  rgba(99, 102, 241, 0.2);
+  --color-accent-grad:    linear-gradient(135deg, #6366f1, #8b5cf6);
+
+  /* Texte */
+  --color-text-primary:   #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted:     #64748b;
+  --color-text-faint:     #475569;
+
+  /* État */
+  --color-success:        #10b981;
+  --color-success-light:  #34d399;
+  --color-success-muted:  rgba(16, 185, 129, 0.15);
+  --color-danger:         #ef4444;
+  --color-warning:        #f59e0b;
+  --color-warning-light:  #fbbf24;
+
+  /* Bordures */
+  --border-subtle:        1px solid rgba(99, 102, 241, 0.15);
+  --border-medium:        1px solid rgba(99, 102, 241, 0.25);
+  --border-surface:       1px solid rgba(255, 255, 255, 0.06);
+
+  /* Espacements */
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   16px;
+  --space-lg:   24px;
+  --space-xl:   32px;
+  --space-2xl:  48px;
+  --space-3xl:  64px;
+  --space-4xl:  80px;
+
+  /* Rayons */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  18px;
+  --radius-full: 9999px;
+
+  /* Typographie */
+  --font-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --text-xs:   11px;
+  --text-sm:   13px;
+  --text-md:   15px;
+  --text-lg:   17px;
+  --text-xl:   20px;
+
+  /* Ombres */
+  --shadow-card:  0 4px 24px rgba(0, 0, 0, 0.3);
+  --shadow-modal: 0 8px 48px rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  --transition-fast:   all 0.15s ease;
+  --transition-base:   all 0.2s ease;
+  --transition-slow:   all 0.35s ease;
+
+  /* Navbar */
+  --navbar-height: 64px;
+}
+
+/* ─── RESET & BASE ───────────────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-base);
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg-base); }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────────────────────── */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* ─── UTILITAIRES ────────────────────────────────────────────────────────────── */
+
+.animate-fadeIn  { animation: fadeIn  0.3s ease; }
+.animate-slideUp { animation: slideUp 0.5s ease; }
+.animate-pulse   { animation: pulse   2s infinite; }
+
+.gradient-text {
+  background: var(--color-accent-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .hide-mobile  { display: none !important; }
+  .show-mobile  { display: flex !important; }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop { display: none !important; }
+  .show-desktop { display: flex !important; }
+}
