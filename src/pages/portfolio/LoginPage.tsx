@@ -4,17 +4,19 @@ import React, { useState } from 'react';
 import { ShieldIcon, EyeIcon, EyeOffIcon } from '../../components/icons';
 
 interface LoginPageProps {
-  onLogin: (password: string) => boolean;
-  onBack: () => void;
+  onLogin?: (password: string) => boolean;
+  onBack?: () => void;
 }
 
 export function LoginPage({ onLogin, onBack }: LoginPageProps) {
+  const login = onLogin ?? (() => false);
+  const back = onBack ?? (() => {});
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = () => {
-    const ok = onLogin(password);
+    const ok = login(password);
     if (!ok) {
       setError('Mot de passe incorrect.');
       setPassword('');
@@ -65,7 +67,7 @@ export function LoginPage({ onLogin, onBack }: LoginPageProps) {
         </button>
 
         <button
-          onClick={onBack}
+          onClick={back}
           style={{ width: '100%', background: 'transparent', color: '#64748b', marginTop: 12, fontSize: 14, padding: 8, cursor: 'pointer' }}
         >
           ← Retour au portfolio
@@ -77,4 +79,8 @@ export function LoginPage({ onLogin, onBack }: LoginPageProps) {
       </div>
     </div>
   );
+}
+
+export default function LoginStandalonePage() {
+  return <LoginPage />;
 }

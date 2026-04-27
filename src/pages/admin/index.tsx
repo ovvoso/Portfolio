@@ -369,3 +369,7 @@ export function AdminProfile({ profile, onUpdate, notify }: AdminProfileProps) {
     </div>
   );
 }
+
+export default function AdminPage() {
+  return <div />;
+}

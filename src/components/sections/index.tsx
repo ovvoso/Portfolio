@@ -119,7 +119,7 @@ export function HeroSection({ profile, projectCount, skillCount, categoryCount, 
 // ── SKILLS ────────────────────────────────────────────────────────────────────
 
 export function SkillsSection({ skills }: { skills: Skill[] }) {
-  const categories = [...new Set(skills.map(s => s.category))];
+  const categories = Array.from(new Set(skills.map(s => s.category)));
 
   return (
     <section style={{ padding: '80px 24px', maxWidth: 1100, margin: '0 auto' }}>
@@ -152,7 +152,7 @@ export function SkillsSection({ skills }: { skills: Skill[] }) {
 
 export function ProjectsSection({ projects }: { projects: Project[] }) {
   const [filter, setFilter] = useState('Tous');
-  const categories = ['Tous', ...new Set(projects.map(p => p.category))];
+  const categories = ['Tous', ...Array.from(new Set(projects.map(p => p.category)))];
   const filtered = filter === 'Tous' ? projects : projects.filter(p => p.category === filter);
 
   return (
